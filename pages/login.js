@@ -5,8 +5,8 @@ import axios from 'axios'
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
     const router = useRouter()
+
     const formStyle = {
         display: "flex",
         flexDirection: "column",
@@ -15,7 +15,7 @@ export default function Login() {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         const credentials = { username, password };
 
         const user = await axios.post("/api/auth/login", credentials);
@@ -35,7 +35,7 @@ export default function Login() {
             onChange={(e) => setUsername(e.target.value)}
             />
 
-            <label htmlFor="password"> Username </label>
+            <label htmlFor="password"> Password </label>
             <input
             type="text"
             name="password"

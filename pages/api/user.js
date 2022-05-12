@@ -1,12 +1,23 @@
 /* eslint-disable import/no-anonymous-default-export */
+import { verify } from 'jsonwebtoken'
+
 export default async function (req, res) {
   const { cookies } = req;
 
   const jwt = cookies.OursiteJWT;
 
+  const secret = process.env.SECRET
+
   if (!jwt) {
-    return res.json({ message: "Invalid token!" });
+    return res.status(401).send('error')
   }
 
-  return res.json({ data: "Top secret data!" });
+  try {
+    verify(jwt,secret)
+    return res.json({ data: "Top secret data!" });
+  }
+  catch {
+    return res.status(401).send('error');
+  }
+ 
 }

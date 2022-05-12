@@ -9,12 +9,13 @@ export default function middleware(req){
     const jwt = cookies.OursiteJWT
 
     const url = req.url
-
+    
     if(url.includes('/dashboard')){
         if(jwt === undefined){
             return NextResponse.redirect('/login')
         }
 
+      
         try{
             verify(jwt, secret)
             return NextResponse.next()

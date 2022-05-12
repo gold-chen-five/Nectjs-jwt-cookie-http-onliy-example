@@ -8,9 +8,16 @@ export default function Home() {
   };
 
   const handleGetUser = async () => {
-    const user = await axios.get("/api/user");
+   
 
-    console.log(user);
+    try{
+      const user = await axios.get("/api/user");
+      console.log(user);
+    }
+    catch(e){
+      console.log(e)
+    }
+    
   };
 
   const handleLogOut = async () => {
